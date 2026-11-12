@@ -88,5 +88,3 @@ app.get('/analytics/users-summary', async (_req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Server Node.js attivo su http://localhost:${PORT}`);
 });
-
-// Test pipeline CI/CD
