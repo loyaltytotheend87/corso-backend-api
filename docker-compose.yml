@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: local_postgres
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: sampledb
+    ports:
+      - "5432:5432"
+  mssql-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: local_mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "DevPassword123!"
+    ports:
+      - "1433:1433"

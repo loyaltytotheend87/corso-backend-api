@@ -1,0 +1,29 @@
+name: Integration & Build Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  verify-node-stack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: cd node-express-prisma && npm install
+      - run: cd node-express-prisma && npx prisma generate
+      - run: cd node-express-prisma && npx tsc --noEmit
+
+  verify-python-stack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: cd python-fastapi-sqlalchemy && pip install -r requirements.txt
+      - run: cd python-fastapi-sqlalchemy && python -m py_compile main.py models.py schemas.py database.py

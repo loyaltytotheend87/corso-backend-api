@@ -1,0 +1,7 @@
+# File con password e configurazioni locali
+.env
+
+# Librerie pesanti (verranno scaricate automaticamente da GitHub Actions)
+node_modules/
+venv/
+__pycache__/
